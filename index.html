@@ -146,8 +146,8 @@
             <div class="w-full max-w-4xl flex flex-col items-center justify-center flex-grow">
 
                 <!-- Header - Animated -->
-                <!-- The header remains hidden on screens smaller than 768px (all standard mobiles, including iPhone landscape) -->
-                <h1 class="hidden md:block v-scaled-header sm:text-5xl md:text-8xl text-center mb-0 sm:mb-2 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
+                <!-- FIX: Changed 'md:block' to 'lg:block'. This hides the header on all standard mobile sizes, including large iPhones in landscape, and shows it only on tablets (1024px+) and desktop. -->
+                <h1 class="hidden lg:block v-scaled-header sm:text-5xl md:text-8xl text-center mb-0 sm:mb-2 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
                     Welcome to <br> the Grand Midori Ortigas
                 </h1>
                 <!-- TIGHTENED SPACING: mb-2 for mobile -->
