@@ -103,13 +103,11 @@
     <div id="help-overlay">
         
         <!-- Main Glassmorphism Container (The actual content box) -->
-        <!-- CRITICAL FIX: my-auto + max-h-full + overflow-y-auto ensures the content is centered when it fits, 
-             but sticks to the top and scrolls internally when it exceeds the viewport height, preventing clipping.
-        -->
-        <div class="glass my-auto p-2 sm:p-4 md:p-12 w-full max-w-4xl max-h-full rounded-none text-white flex flex-col items-center justify-center overflow-y-auto">
+        <!-- FIX: Removed max-w-4xl here to ensure the glass background is full width on desktop. -->
+        <div class="glass my-auto p-2 sm:p-4 md:p-12 w-full max-h-full rounded-none text-white flex flex-col items-center justify-center overflow-y-auto">
             
-            <!-- Content Wrapper: Allows content to shrink but keeps it centered -->
-            <div class="w-full flex flex-col items-center flex-shrink-0">
+            <!-- Content Wrapper: Added max-w-4xl here to constrain the content for readability. -->
+            <div class="w-full max-w-4xl flex flex-col items-center flex-shrink-0">
 
                 <!-- Header - Animated (Aggressively reduced vertical margin and font size) -->
                 <h1 class="text-2xl sm:text-5xl md:text-8xl text-center mb-2 sm:mb-4 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
