@@ -192,12 +192,21 @@
                     </div>
 
                 </div>
+                
+                <!-- Footer Element Container -->
+                <div class="flex flex-col items-center">
+                    
+                    <!-- 1. Text Link (Mobile Only: Visible up to md, hidden at md and above) -->
+                    <p class="mt-4 text-base font-medium text-white/90 underline decoration-white/70 underline-offset-4 cursor-pointer transition-all duration-300 hover:text-white hover:decoration-white/90 active:scale-[0.98] md:hidden">
+                        Tap to Experience Tour
+                    </p>
 
-                <!-- Experience Tour Button (Footer equivalent) -->
-                <!-- FIX: Changed all sm: to md: to ensure the button is tiny (px-4 py-1 text-xs) on all mobile devices. -->
-                <button class="mt-4 md:mt-6 px-4 py-1 text-xs md:px-10 md:py-4 md:text-xl font-medium bg-white text-gray-900 rounded-full shadow-2xl transition-all duration-300 hover:bg-gray-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-white/50">
-                    Experience Tour
-                </button>
+                    <!-- 2. Button (Tablet/Desktop Only: Hidden up to md, visible at md and above) -->
+                    <button class="hidden md:block mt-6 px-6 py-2 text-base lg:px-10 lg:py-4 lg:text-xl font-medium bg-white text-gray-900 rounded-full shadow-2xl transition-all duration-300 hover:bg-gray-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-white/50">
+                        Experience Tour
+                    </button>
+                    
+                </div>
             </div>
 
         </div>
