@@ -84,20 +84,20 @@
 
     <!-- Help Overlay (Full Screen, Dynamic Centering, and NON-SCROLLABLE) --><div id="help-overlay">
         <!-- Main Glassmorphism Card (Full screen with internal content constraints and reduced padding for landscape) -->
-        <div class="glass p-4 sm:p-6 md:p-12 w-full h-full rounded-none text-white font-poppins flex flex-col items-center justify-center">
+        <div class="glass p-3 sm:p-6 md:p-12 w-full h-full rounded-none text-white font-poppins flex flex-col items-center justify-center">
             
             <!-- Content Wrapper: Constrains the width of the text/grid for readability -->
             <div class="w-full max-w-4xl py-0 sm:py-2 flex flex-col items-center">
 
-                <!-- Header - Animated (Reduced vertical margin) -->
-                <h1 class="text-4xl sm:text-6xl md:text-8xl text-center mb-4 sm:mb-8 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
+                <!-- Header - Animated (Reduced vertical margin and font size for smallest screens) -->
+                <h1 class="text-3xl sm:text-5xl md:text-8xl text-center mb-3 sm:mb-6 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
                     Welcome to <br> the Grand Midori Ortigas
                 </h1>
-                <p class="text-center text-base sm:text-lg md:text-xl mb-6 sm:mb-10 opacity-80 font-medium">
+                <p class="text-center text-base sm:text-lg md:text-xl mb-4 sm:mb-8 opacity-80 font-medium">
                     A simple guide to navigating this immersive 360° experience.
                 </p>
 
-                <!-- Instructions Grid (UPDATED: Now uses 'sm:grid-cols-2' to switch sooner) -->
+                <!-- Instructions Grid (Now uses 'sm:grid-cols-2' to switch sooner) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
 
                     <!-- 1. Panning Instruction Card -->
@@ -143,7 +143,7 @@
                 </div>
 
                 <!-- Experience Tour Button (Reduced vertical margin) -->
-                <button class="mt-6 sm:mt-10 px-8 py-3 sm:px-10 sm:py-4 text-lg sm:text-xl font-medium bg-white text-gray-900 rounded-full shadow-2xl transition-all duration-300 hover:bg-gray-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-white/50">
+                <button class="mt-4 sm:mt-8 px-8 py-3 sm:px-10 sm:py-4 text-lg sm:text-xl font-medium bg-white text-gray-900 rounded-full shadow-2xl transition-all duration-300 hover:bg-gray-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-white/50">
                     Experience Tour
                 </button>
             </div>
