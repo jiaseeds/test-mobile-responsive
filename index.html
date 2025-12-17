@@ -55,23 +55,32 @@
             z-index: 1000;
         }
 
-        /* MOBILE SCALING FIX: Proportional font sizing using VW units for small screens */
+        /* GLOBAL MOBILE SCALING FIX: Default to proportional scaling */
         .v-scaled-header {
-            font-size: 5vw; /* Scales with screen width (default proportional size for mobile) */
+             /* Neutral fallback for very small un-queried screens */
+             font-size: 4vw; 
         }
         
-        /* NEW REQUIREMENT: Landscape Override - Force 30px font size on small screens in landscape mode */
+        /* FIX: 1. Mobile Portrait Override (Max width 639px, Portrait) - Use proportional 5vw */
+        @media (max-width: 639px) and (orientation: portrait) {
+            .v-scaled-header {
+                font-size: 5vw; 
+            }
+        }
+        
+        /* FIX: 2. Mobile Landscape Override (Max width 639px, Landscape) - FORCE 30px */
         @media (max-width: 639px) and (orientation: landscape) { 
             .v-scaled-header {
                 font-size: 30px; 
             }
         }
         
+        /* Mobile Subtitle Scaling */
         .v-scaled-subtitle {
              font-size: 3vw; /* Smaller for better fit */
         }
         
-        /* Override scaling on sm (tablet/desktop) breakpoint and up to preserve large text */
+        /* 3. Desktop/Tablet Override (Min width 640px and up) - Preserve large fixed size */
         @media (min-width: 640px) { 
             .v-scaled-header {
                 font-size: 3rem; /* Tailwind sm:text-5xl equivalent */
@@ -135,7 +144,7 @@
                 <!-- Header - Animated -->
                 <!-- SCALING FIX: Use v-scaled-header for proportional mobile text size. Tailwind classes take over at sm: -->
                 <h1 class="v-scaled-header sm:text-5xl md:text-8xl text-center mb-1 sm:mb-4 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
-                    Welcome to <br> Mobile Test
+                    Welcome to <br> the Test
                 </h1>
                 <!-- SCALING FIX: Use v-scaled-subtitle for proportional mobile text size -->
                 <p class="v-scaled-subtitle sm:text-lg md:text-xl mb-1 sm:mb-6 opacity-80 font-medium">
