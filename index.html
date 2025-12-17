@@ -50,7 +50,8 @@
         #help-overlay {
             /* Now centers itself within the flex body, fills 100% width and minimum height */
             width: 100%;
-            min-height: 100dvh; /* Ensures it covers the full dynamic viewport */
+            /* CRITICAL FIX: Use height: 100dvh instead of min-height for reliable flex centering context */
+            height: 100dvh; 
             display: flex;
             justify-content: center; /* Center horizontally */
             align-items: center; /* Center vertically */
@@ -104,11 +105,12 @@
     <div id="help-overlay">
         
         <!-- Main Glassmorphism Container (The actual content box) -->
-        <!-- C) Responsive Container Layout: 
-             - max-h-full constrains the box to the height of the viewport minus its padding (safe areas).
-             - overflow-y-auto ensures the content scrolls internally if necessary, preventing clipping.
+        <!-- CRITICAL FIX: Added my-auto (margin-top/bottom: auto). 
+             When content is too tall, the auto margins collapse to 0, 
+             forcing the content to stick to the top edge and scroll safely 
+             within the max-h-full constraint, preventing clipping.
         -->
-        <div class="glass p-2 sm:p-4 md:p-12 w-full max-w-4xl max-h-full rounded-none text-white flex flex-col items-center justify-center overflow-y-auto">
+        <div class="glass my-auto p-2 sm:p-4 md:p-12 w-full max-w-4xl max-h-full rounded-none text-white flex flex-col items-center justify-center overflow-y-auto">
             
             <!-- Content Wrapper: Allows content to shrink but keeps it centered -->
             <div class="w-full flex flex-col items-center flex-shrink-0">
