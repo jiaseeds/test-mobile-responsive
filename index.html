@@ -46,14 +46,12 @@
             top: 0;
             left: 0;
             width: 100vw;
-            /* CRITICAL FIX: Use 100vh fallback, then 100dvh for reliable height (mobile dynamic height fix) */
-            height: 100vh; 
-            height: 100dvh; 
+            /* CRITICAL FIX: Use the JS calculated height variable for true dynamic viewport height */
+            height: var(--app-height, 100vh); 
             
             display: flex;
             justify-content: center; /* Center horizontally */
-            /* ALIGNMENT FIX: Revert to center for aesthetic positioning of the glass box */
-            align-items: center; 
+            align-items: center; /* Center vertically */
             z-index: 1000;
         }
 
@@ -180,6 +178,28 @@
 
         </div>
     </div>
+
+<script>
+    /**
+     * Dynamically calculates the true viewport height (window.innerHeight) and 
+     * sets it as a CSS variable (--app-height) on the root element.
+     * This compensates for inconsistent mobile browser toolbars/UI, ensuring
+     * true full-screen behavior and preventing scrolling/gaps.
+     */
+    function setViewportHeight() {
+        // Calculate the actual height of the viewport and set it as a CSS variable.
+        document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
+    }
+
+    // Initialize on load
+    setViewportHeight();
+
+    // Re-calculate height on window resize (including orientation changes)
+    window.addEventListener('resize', setViewportHeight);
+
+    // Some mobile browsers also benefit from explicitly listening to orientation change
+    window.addEventListener('orientationchange', setViewportHeight);
+</script>
 
 </body>
 </html>
