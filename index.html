@@ -52,7 +52,8 @@
             
             display: flex;
             justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
+            /* FIX: Align to top, ensuring full-height child starts at top edge */
+            align-items: flex-start; 
             z-index: 1000;
         }
         
@@ -102,12 +103,10 @@
     <div id="help-overlay">
         
         <!-- Main Glassmorphism Container (The actual content box) -->
-        <!-- CRITICAL FIX: Removed justify-center. The my-auto class paired with max-h-full 
-             allows the content to be centered when small, but stick to the top and scroll 
-             internally when it exceeds the viewport height. Removing internal centering 
-             prevents the content from being pushed equally off the top and bottom.
+        <!-- FIX: Removed my-auto and added h-full to force the glass background to fill 100% of viewport height. 
+             This eliminates the white gaps. Content now flows from the top padding.
         -->
-        <div class="glass my-auto p-2 sm:p-4 md:p-12 w-full max-h-full rounded-none text-white flex flex-col items-center overflow-y-auto">
+        <div class="glass h-full p-2 sm:p-4 md:p-12 w-full max-h-full rounded-none text-white flex flex-col items-center overflow-y-auto">
             
             <!-- Content Wrapper: Constrains the content width for readability -->
             <div class="w-full max-w-4xl flex flex-col items-center flex-shrink-0">
