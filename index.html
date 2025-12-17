@@ -140,7 +140,8 @@
         
         <!-- Main Glassmorphism Container (Full height, full width for background) -->
         <!-- The padding on this element now uses env() to respect safe areas -->
-        <div class="glass h-full p-1 sm:p-4 md:p-12 w-full max-h-full rounded-none text-white flex flex-col items-center overflow-y-auto">
+        <!-- FIX: Changed overflow-y-auto to overflow-hidden to prevent mobile scrolling -->
+        <div class="glass h-full p-1 sm:p-4 md:p-12 w-full max-h-full rounded-none text-white flex flex-col items-center overflow-hidden">
             
             <!-- Content Wrapper: Centers the content block vertically within the full-height glass area -->
             <div class="w-full max-w-4xl flex flex-col items-center justify-center flex-grow">
@@ -150,8 +151,8 @@
                 <h1 class="hidden lg:block v-scaled-header sm:text-5xl md:text-8xl text-center mb-0 sm:mb-2 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
                     Welcome to <br> the Grand Midori Ortigas
                 </h1>
-                <!-- TIGHTENED SPACING: mb-2 for mobile -->
-                <p class="v-scaled-subtitle sm:text-lg md:text-xl mb-2 sm:mb-6 opacity-80 font-medium">
+                <!-- TIGHTENED SPACING: mb-2 for mobile / mb-4 for tablet/desktop -->
+                <p class="v-scaled-subtitle sm:text-lg md:text-xl mb-2 md:mb-4 opacity-80 font-medium">
                     A simple guide to navigating this immersive 360° experience.
                 </p>
 
