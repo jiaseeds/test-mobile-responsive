@@ -57,11 +57,20 @@
 
         /* MOBILE SCALING FIX: Proportional font sizing using VW units for small screens */
         .v-scaled-header {
-            font-size: 5vw; /* Scales with screen width (good for landscape) */
+            font-size: 5vw; /* Scales with screen width (default proportional size for mobile) */
         }
+        
+        /* NEW REQUIREMENT: Landscape Override - Force 30px font size on small screens in landscape mode */
+        @media (max-width: 639px) and (orientation: landscape) { 
+            .v-scaled-header {
+                font-size: 30px; 
+            }
+        }
+        
         .v-scaled-subtitle {
              font-size: 3vw; /* Smaller for better fit */
         }
+        
         /* Override scaling on sm (tablet/desktop) breakpoint and up to preserve large text */
         @media (min-width: 640px) { 
             .v-scaled-header {
