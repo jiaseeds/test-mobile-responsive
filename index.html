@@ -2,25 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- C) Correct Viewport Meta Tag: viewport-fit=cover handles safe areas on iOS -->
+    <!-- C) CRITICAL: Ensures content scales and respects notches/safe areas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Panorama Interaction Guide</title>
     <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Custom Font: Poppins (for all text) --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* B) HTML/Body Height Normalization: Base for full-screen */
+        /* A) HTML/Body Normalization: Ensure 100% height context for fixed elements */
         html { 
             height: 100%; 
         }
 
         body {
             margin: 0;
-            /* CRITICAL: Base height set to 100% to support fixed overlay */
             height: 100%;
             width: 100%;
-            /* Only allow scrolling on the body if something outside the fixed overlay needs it */
-            overflow-x: hidden; 
-            overflow-y: auto; 
+            /* Prevent body-level scrolling due to fixed overlay */
+            overflow: hidden; 
             
             font-family: 'Poppins', sans-serif;
         }
@@ -30,28 +28,28 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* Glassmorphism Effect: Opacity adjusted to 30% (0.30) - NOW DARK GLASS */
+        /* Glassmorphism Effect: Opacity adjusted to 30% (0.30) - DARK GLASS */
         .glass {
             background-color: rgba(0, 0, 0, 0.30);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            /* B) Safe Area Insets: Add padding to respect notches/browser controls */
+            /* B) Safe Area Insets: Adds padding to respect device cutouts (notch) */
             padding-top: env(safe-area-inset-top, 0.5rem);
             padding-bottom: env(safe-area-inset-bottom, 0.5rem);
         }
 
-        /* B) Primary Container Refactor: NOW FIXED POSITION for true full-screen overlay */
+        /* B) PRIMARY CONTAINER: Full-screen coverage and fail-safe centering */
         #help-overlay {
-            /* CRITICAL FIX: Fixed position ensures it covers the entire visible viewport */
             position: fixed; 
             top: 0;
             left: 0;
             width: 100vw;
-            /* CRITICAL FIX: Added 100vh fallback, then use 100dvh for reliable mobile height (accounts for address bar) */
+            /* CRITICAL FIX: Use 100vh fallback, then 100dvh for reliable height (mobile dynamic height fix) */
             height: 100vh; 
             height: 100dvh; 
+            
             display: flex;
             justify-content: center; /* Center horizontally */
             align-items: center; /* Center vertically */
@@ -104,13 +102,17 @@
     <div id="help-overlay">
         
         <!-- Main Glassmorphism Container (The actual content box) -->
-        <!-- FIX: Removed max-w-4xl here to ensure the glass background is full width on desktop. -->
-        <div class="glass my-auto p-2 sm:p-4 md:p-12 w-full max-h-full rounded-none text-white flex flex-col items-center justify-center overflow-y-auto">
+        <!-- CRITICAL FIX: Removed justify-center. The my-auto class paired with max-h-full 
+             allows the content to be centered when small, but stick to the top and scroll 
+             internally when it exceeds the viewport height. Removing internal centering 
+             prevents the content from being pushed equally off the top and bottom.
+        -->
+        <div class="glass my-auto p-2 sm:p-4 md:p-12 w-full max-h-full rounded-none text-white flex flex-col items-center overflow-y-auto">
             
-            <!-- Content Wrapper: Added max-w-4xl here to constrain the content for readability. -->
+            <!-- Content Wrapper: Constrains the content width for readability -->
             <div class="w-full max-w-4xl flex flex-col items-center flex-shrink-0">
 
-                <!-- Header - Animated (Aggressively reduced vertical margin and font size) -->
+                <!-- Header - Animated -->
                 <h1 class="text-2xl sm:text-5xl md:text-8xl text-center mb-2 sm:mb-4 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
                     Welcome to <br> the Grand Midori Ortigas
                 </h1>
@@ -118,7 +120,7 @@
                     A simple guide to navigating this immersive 360° experience.
                 </p>
 
-                <!-- Instructions Grid (Switches to 2 columns on 'sm' and uses tight gap) -->
+                <!-- Instructions Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
 
                     <!-- 1. Panning Instruction Card -->
