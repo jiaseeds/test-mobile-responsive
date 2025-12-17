@@ -2,22 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- C) Correct Viewport Meta Tag: Essential for mobile scaling -->
+    <!-- C) Correct Viewport Meta Tag: viewport-fit=cover handles safe areas on iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Panorama Interaction Guide</title>
     <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Custom Font: Poppins (for all text) --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Background is transparent, allowing underlying content to show */
+        /* B) HTML/Body Height Normalization: The foundation for full-screen layouts */
+        html { 
+            height: 100%; 
+        }
+
         body {
             margin: 0;
-            /* C) Safe Scrolling Behavior: Allow scrolling on the body level if the main overlay fails, 
-               but we rely on the inner container for controlled scrolling. */
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            overflow-y: auto;   /* Allow vertical scrolling on the body level */
+            /* Use 100dvh for best mobile safe area handling and true full-screen */
+            min-height: 100dvh; 
             width: 100%;
-            /* Use 100dvh for best mobile safe area handling */
-            height: 100dvh; 
+            /* Enable scrolling on the body level only if the main container overflows */
+            overflow-x: hidden; 
+            overflow-y: auto;
+            
+            /* Make the body the primary flex container to handle centering/layout */
+            display: flex;
+            flex-direction: column;
+            
+            font-family: 'Poppins', sans-serif; /* Moved from class to global style for consistency */
         }
 
         /* Define Custom Font Family */
@@ -37,16 +46,14 @@
             padding-bottom: env(safe-area-inset-bottom, 0.5rem);
         }
 
-        /* Full screen overlay and centering: Uses DVH for accurate mobile height. */
+        /* B) Primary Container Refactor: Removed position: fixed */
         #help-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100dvh; /* B) Using Dynamic Viewport Height (dvh) */
+            /* Now centers itself within the flex body, fills 100% width and minimum height */
+            width: 100%;
+            min-height: 100dvh; /* Ensures it covers the full dynamic viewport */
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
             z-index: 1000;
         }
         
@@ -92,12 +99,18 @@
 </head>
 <body class="font-poppins">
 
-    <!-- Help Overlay (Full Screen, Dynamic Centering) --><div id="help-overlay">
-        <!-- Main Glassmorphism Container (Full screen, highly compact padding) -->
-        <!-- Added C) Responsive Container Layout: max-h-full and overflow-y-auto ensures the content scrolls internally if necessary. -->
-        <div class="glass p-2 sm:p-4 md:p-12 w-full max-w-4xl max-h-full rounded-none text-white font-poppins flex flex-col items-center justify-center overflow-y-auto">
+    <!-- Help Overlay (Full Screen, Dynamic Centering) -->
+    <!-- This container ensures content is centered within the 100dvh area -->
+    <div id="help-overlay">
+        
+        <!-- Main Glassmorphism Container (The actual content box) -->
+        <!-- C) Responsive Container Layout: 
+             - max-h-full constrains the box to the height of the viewport minus its padding (safe areas).
+             - overflow-y-auto ensures the content scrolls internally if necessary, preventing clipping.
+        -->
+        <div class="glass p-2 sm:p-4 md:p-12 w-full max-w-4xl max-h-full rounded-none text-white flex flex-col items-center justify-center overflow-y-auto">
             
-            <!-- Content Wrapper: Constrains the width of the text/grid for readability -->
+            <!-- Content Wrapper: Allows content to shrink but keeps it centered -->
             <div class="w-full flex flex-col items-center flex-shrink-0">
 
                 <!-- Header - Animated (Aggressively reduced vertical margin and font size) -->
