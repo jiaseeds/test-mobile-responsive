@@ -38,6 +38,9 @@
             /* B) Safe Area Insets: Adds padding to respect device cutouts (notch) */
             padding-top: env(safe-area-inset-top, 0.5rem);
             padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+            /* NEW FIX: Crucial for iPhone landscape compatibility to avoid cutting content on the sides */
+            padding-left: env(safe-area-inset-left, 0.5rem);
+            padding-right: env(safe-area-inset-right, 0.5rem);
         }
 
         /* PRIMARY CONTAINER: Full-screen coverage and fail-safe centering */
@@ -136,16 +139,16 @@
     <div id="help-overlay">
         
         <!-- Main Glassmorphism Container (Full height, full width for background) -->
-        <!-- Reduced mobile padding (p-1) relies on tight inner elements to prevent scrolling -->
+        <!-- The padding on this element now uses env() to respect safe areas -->
         <div class="glass h-full p-1 sm:p-4 md:p-12 w-full max-h-full rounded-none text-white flex flex-col items-center overflow-y-auto">
             
             <!-- Content Wrapper: Centers the content block vertically within the full-height glass area -->
             <div class="w-full max-w-4xl flex flex-col items-center justify-center flex-grow">
 
                 <!-- Header - Animated -->
-                <!-- NEW FIX: Hidden by default (mobile) and visible from sm: (desktop/tablet) -->
-                <h1 class="hidden sm:block v-scaled-header sm:text-5xl md:text-8xl text-center mb-0 sm:mb-2 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
-                    Welcome to <br> the No Text Test
+                <!-- The header remains hidden on screens smaller than 768px (all standard mobiles, including iPhone landscape) -->
+                <h1 class="hidden md:block v-scaled-header sm:text-5xl md:text-8xl text-center mb-0 sm:mb-2 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
+                    Welcome to <br> the Grand Midori Ortigas
                 </h1>
                 <!-- TIGHTENED SPACING: mb-2 for mobile -->
                 <p class="v-scaled-subtitle sm:text-lg md:text-xl mb-2 sm:mb-6 opacity-80 font-medium">
