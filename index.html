@@ -8,25 +8,21 @@
     <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Custom Font: Poppins (for all text) --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* B) HTML/Body Height Normalization: The foundation for full-screen layouts */
+        /* B) HTML/Body Height Normalization: Base for full-screen */
         html { 
             height: 100%; 
         }
 
         body {
             margin: 0;
-            /* Use 100dvh for best mobile safe area handling and true full-screen */
-            min-height: 100dvh; 
+            /* CRITICAL: Base height set to 100% to support fixed overlay */
+            height: 100%;
             width: 100%;
-            /* Enable scrolling on the body level only if the main container overflows */
+            /* Only allow scrolling on the body if something outside the fixed overlay needs it */
             overflow-x: hidden; 
-            overflow-y: auto;
+            overflow-y: auto; 
             
-            /* Make the body the primary flex container to handle centering/layout */
-            display: flex;
-            flex-direction: column;
-            
-            font-family: 'Poppins', sans-serif; /* Moved from class to global style for consistency */
+            font-family: 'Poppins', sans-serif;
         }
 
         /* Define Custom Font Family */
@@ -46,11 +42,14 @@
             padding-bottom: env(safe-area-inset-bottom, 0.5rem);
         }
 
-        /* B) Primary Container Refactor: Removed position: fixed */
+        /* B) Primary Container Refactor: NOW FIXED POSITION for true full-screen overlay */
         #help-overlay {
-            /* Now centers itself within the flex body, fills 100% width and minimum height */
-            width: 100%;
-            /* CRITICAL FIX: Use height: 100dvh instead of min-height for reliable flex centering context */
+            /* CRITICAL FIX: Fixed position ensures it covers the entire visible viewport */
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100vw;
+            /* CRITICAL FIX: Use 100dvh for reliable mobile height (accounts for address bar) */
             height: 100dvh; 
             display: flex;
             justify-content: center; /* Center horizontally */
@@ -101,14 +100,11 @@
 <body class="font-poppins">
 
     <!-- Help Overlay (Full Screen, Dynamic Centering) -->
-    <!-- This container ensures content is centered within the 100dvh area -->
     <div id="help-overlay">
         
         <!-- Main Glassmorphism Container (The actual content box) -->
-        <!-- CRITICAL FIX: Added my-auto (margin-top/bottom: auto). 
-             When content is too tall, the auto margins collapse to 0, 
-             forcing the content to stick to the top edge and scroll safely 
-             within the max-h-full constraint, preventing clipping.
+        <!-- CRITICAL FIX: my-auto + max-h-full + overflow-y-auto ensures the content is centered when it fits, 
+             but sticks to the top and scrolls internally when it exceeds the viewport height, preventing clipping.
         -->
         <div class="glass my-auto p-2 sm:p-4 md:p-12 w-full max-w-4xl max-h-full rounded-none text-white flex flex-col items-center justify-center overflow-y-auto">
             
