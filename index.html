@@ -146,7 +146,7 @@
             <div class="w-full max-w-4xl flex flex-col items-center justify-center flex-grow">
 
                 <!-- Header - Animated -->
-                <!-- FIX: Changed 'md:block' to 'lg:block'. This hides the header on all standard mobile sizes, including large iPhones in landscape, and shows it only on tablets (1024px+) and desktop. -->
+                <!-- The header remains hidden on screens smaller than 1024px (all standard mobiles/small tablets) -->
                 <h1 class="hidden lg:block v-scaled-header sm:text-5xl md:text-8xl text-center mb-0 sm:mb-2 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
                     Welcome to <br> the Grand Midori Ortigas
                 </h1>
@@ -194,8 +194,8 @@
                 </div>
 
                 <!-- Experience Tour Button (Footer equivalent) -->
-                <!-- TIGHTENED SPACING: mt-4 for mobile button -->
-                <button class="mt-4 sm:mt-6 px-8 py-2 sm:px-10 sm:py-4 text-sm sm:text-xl font-medium bg-white text-gray-900 rounded-full shadow-2xl transition-all duration-300 hover:bg-gray-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-white/50">
+                <!-- UPDATED: Reduced padding for mobile (default view) from px-8 py-2 to px-6 py-1.5 -->
+                <button class="mt-4 sm:mt-6 px-6 py-1.5 sm:px-10 sm:py-4 text-sm sm:text-xl font-medium bg-white text-gray-900 rounded-full shadow-2xl transition-all duration-300 hover:bg-gray-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-white/50">
                     Experience Tour
                 </button>
             </div>
