@@ -61,23 +61,23 @@
              font-size: 4vw; 
         }
         
-        /* FIX: 1. Mobile Portrait Override (Max width 639px, Portrait) - Use proportional 5vw */
+        /* FIX: 1. Mobile Portrait Override (Max width 639px, Portrait) - Use reduced proportional 4vw */
         @media (max-width: 639px) and (orientation: portrait) {
             .v-scaled-header {
-                font-size: 5vw; 
+                font-size: 4vw; 
             }
         }
         
-        /* FIX: 2. Mobile Landscape Override (Max width 639px, Landscape) - FORCE 30px */
+        /* FIX: 2. Mobile Landscape Override (Max width 639px, Landscape) - FORCE 30px (User Requirement) */
         @media (max-width: 639px) and (orientation: landscape) { 
             .v-scaled-header {
                 font-size: 30px; 
             }
         }
         
-        /* Mobile Subtitle Scaling */
+        /* Mobile Subtitle Scaling: Reduced to save vertical space */
         .v-scaled-subtitle {
-             font-size: 3vw; /* Smaller for better fit */
+             font-size: 2.5vw; 
         }
         
         /* 3. Desktop/Tablet Override (Min width 640px and up) - Preserve large fixed size */
@@ -136,23 +136,25 @@
     <div id="help-overlay">
         
         <!-- Main Glassmorphism Container (Full height, full width for background) -->
+        <!-- Reduced mobile padding (p-1) relies on tight inner elements to prevent scrolling -->
         <div class="glass h-full p-1 sm:p-4 md:p-12 w-full max-h-full rounded-none text-white flex flex-col items-center overflow-y-auto">
             
             <!-- Content Wrapper: Centers the content block vertically within the full-height glass area -->
             <div class="w-full max-w-4xl flex flex-col items-center justify-center flex-grow">
 
                 <!-- Header - Animated -->
-                <!-- SCALING FIX: Use v-scaled-header for proportional mobile text size. Tailwind classes take over at sm: -->
-                <h1 class="v-scaled-header sm:text-5xl md:text-8xl text-center mb-1 sm:mb-4 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
-                    Welcome to <br> the Test
+                <!-- TIGHTENED SPACING: mb-0 for mobile, reduced sm:mb-4 to sm:mb-2 -->
+                <h1 class="v-scaled-header sm:text-5xl md:text-8xl text-center mb-0 sm:mb-2 tracking-wider animate-header-float font-medium" style="color: #FFFFFF;">
+                    Welcome to <br> the Grand Midori Ortigas
                 </h1>
-                <!-- SCALING FIX: Use v-scaled-subtitle for proportional mobile text size -->
-                <p class="v-scaled-subtitle sm:text-lg md:text-xl mb-1 sm:mb-6 opacity-80 font-medium">
+                <!-- TIGHTENED SPACING: mb-2 for mobile -->
+                <p class="v-scaled-subtitle sm:text-lg md:text-xl mb-2 sm:mb-6 opacity-80 font-medium">
                     A simple guide to navigating this immersive 360° experience.
                 </p>
 
                 <!-- Instructions Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <!-- TIGHTENED SPACING: gap-2 for mobile grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
 
                     <!-- 1. Panning Instruction Card -->
                     <div class="p-2 sm:p-5 bg-black/30 rounded-xl shadow-lg flex flex-col items-center">
@@ -189,7 +191,8 @@
                 </div>
 
                 <!-- Experience Tour Button (Footer equivalent) -->
-                <button class="mt-2 sm:mt-6 px-8 py-2 sm:px-10 sm:py-4 text-sm sm:text-xl font-medium bg-white text-gray-900 rounded-full shadow-2xl transition-all duration-300 hover:bg-gray-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-white/50">
+                <!-- TIGHTENED SPACING: mt-4 for mobile button -->
+                <button class="mt-4 sm:mt-6 px-8 py-2 sm:px-10 sm:py-4 text-sm sm:text-xl font-medium bg-white text-gray-900 rounded-full shadow-2xl transition-all duration-300 hover:bg-gray-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-white/50">
                     Experience Tour
                 </button>
             </div>
